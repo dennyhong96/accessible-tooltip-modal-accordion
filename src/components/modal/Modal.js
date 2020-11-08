@@ -8,7 +8,7 @@ const Modal = ({ children, toggle, setToggle, className, ...restProps }) => {
     ? createPortal(
         <div
           {...restProps}
-          className={`flex flex-col p-4 rounded-xl bg-blue-100 ${className}`}
+          className={`fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col p-4 rounded-xl bg-blue-100 max-w-md ${className}`}
         >
           {/* Close button */}
           <button
@@ -27,8 +27,12 @@ const Modal = ({ children, toggle, setToggle, className, ...restProps }) => {
 };
 
 // Modal header
-Modal.Header = ({ children, ...restProps }) => {
-  return <header {...restProps}>{children}</header>;
+Modal.Header = ({ children, className, ...restProps }) => {
+  return (
+    <header className={`text-lg font-bold mb-4 ${className}`} {...restProps}>
+      {children}
+    </header>
+  );
 };
 
 // Modal body
