@@ -12,6 +12,9 @@ module.exports = {
           100: "#e2e2d5",
           200: "#888883",
         },
+        backdrop: {
+          default: "rgba(0,0,0,0.3)",
+        },
       },
       fontFamily: {
         body: ["Nunito"], // will generate class name: font-body
