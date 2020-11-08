@@ -9,7 +9,7 @@
 /* Tailwind apply directives */
 @layer base {
   body {
-    @apply font-body;
+    @apply font-body text-gray-800 min-h-screen flex justify-center items-center;
   }
 }
 
