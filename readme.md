@@ -1,6 +1,6 @@
 ### Lightweight Tooltip, Modal, and Accordion component with Nextjs, TailwindCSS, and Framer Motion.
 
-#### Fully accessble and tab navigatable.
+#### Fully accessible and tab navigatable.
 
 Demo
 ![Demo](./public/demo.gif)
