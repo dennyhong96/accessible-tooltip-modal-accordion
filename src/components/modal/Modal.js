@@ -28,14 +28,15 @@ const modalVariants = {
 
 // Modal
 const Modal = ({ children, toggle, setToggle, className, ...restProps }) => {
-  const modalCloseBtnRef = useRef();
+  const modalRef = useRef();
 
   useEffect(() => {
+    console.log(modalRef.current);
     // Auto focus on modal close button
-    if (modalCloseBtnRef.current) {
-      modalCloseBtnRef.current.focus();
+    if (modalRef.current) {
+      modalRef.current.focus();
     }
-  }, [modalCloseBtnRef.current]);
+  }, [modalRef.current]);
 
   return (
     typeof window !== "undefined" &&
@@ -54,31 +55,48 @@ const Modal = ({ children, toggle, setToggle, className, ...restProps }) => {
             />
 
             {/* Modal */}
-            <motion.div
-              variants={modalVariants}
-              initial="hidden"
-              animate="visible"
-              exit="exit"
-              {...restProps}
-              className={`fixed top-1/2 left-1/2 flex flex-col rounded-xl bg-blue-100 w-10/12 max-w-md ${className}`}
-            >
-              {/* Close button */}
-              <button
-                ref={modalCloseBtnRef}
-                onClick={setToggle.bind(this, false)}
-                className="self-end flex px-2 text-red-300 rounded-full border border-red-300 mr-4 mt-4 hover:border-red-500 hover:text-red-500"
-              >
-                &times;
-              </button>
-
-              {/* Content */}
+            <ModalContent className={className} setToggle={setToggle}>
               {children}
-            </motion.div>
+            </ModalContent>
           </Fragment>
         )}
       </AnimatePresence>,
       document.querySelector("#modal-portal")
     )
+  );
+};
+
+// Break up ModalContent from nested JSX to properly use React.useRef
+const ModalContent = ({ children, className, setToggle, ...restProps }) => {
+  const modalRef = useRef();
+
+  // Focus on modal upon open
+  useEffect(() => {
+    modalRef.current.focus();
+  }, []);
+
+  return (
+    <motion.div
+      variants={modalVariants}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
+      ref={modalRef}
+      tabIndex={0}
+      {...restProps}
+      className={`fixed top-1/2 left-1/2 flex flex-col rounded-xl bg-blue-100 w-10/12 max-w-md ${className}`}
+    >
+      {/* Close button */}
+      <button
+        onClick={setToggle.bind(this, false)}
+        className="self-end flex px-2 text-red-300 rounded-full border border-red-300 mr-4 mt-4 hover:border-red-500 hover:text-red-500"
+      >
+        &times;
+      </button>
+
+      {/* Content */}
+      {children}
+    </motion.div>
   );
 };
 
