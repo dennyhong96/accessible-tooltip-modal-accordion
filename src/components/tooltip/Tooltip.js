@@ -1,5 +1,12 @@
 import { useState, useEffect, useRef, Fragment, cloneElement } from "react";
 import { createPortal } from "react-dom";
+import { motion, AnimatePresence } from "framer-motion";
+
+const tooltipVariants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 0.15 } },
+  exit: { opacity: 0, transition: { duration: 0.15 } },
+};
 
 const Tooltip = ({ label, children }) => {
   const [show, setShow] = useState(false);
@@ -32,18 +39,27 @@ const Tooltip = ({ label, children }) => {
   return (
     <Fragment>
       {/* Tooltip */}
-      {show &&
+
+      {typeof window !== "undefined" &&
         createPortal(
-          <div
-            tabIndex={0}
-            className="absolute px-5 py-3 bg-gray-700 text-gray-200 text-sm rounded left-0 top-0"
-            style={{
-              left: tooltipPosition.left, // Calculated from parent position
-              top: tooltipPosition.top, // Calculated from parent position
-            }}
-          >
-            {label}
-          </div>,
+          <AnimatePresence>
+            {show && (
+              <motion.div
+                variants={tooltipVariants}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+                tabIndex={0}
+                className="absolute px-5 py-3 bg-gray-700 text-gray-200 text-sm rounded left-0 top-0"
+                style={{
+                  left: tooltipPosition.left, // Calculated from parent position
+                  top: tooltipPosition.top, // Calculated from parent position
+                }}
+              >
+                {label}
+              </motion.div>
+            )}
+          </AnimatePresence>,
           document.querySelector("#tooltip-portal")
         )}
 
