@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <Fragment>
       {/* Tooltip Toggle Button */}
-      <Tooltip label="Hi, this is tooltip!">
+      <Tooltip label="👋 Hi, I'm a tooltip!">
         <button className="px-5 py-3 rounded-full border border-gray-800 mr-4">
           Hover Me
         </button>
@@ -26,7 +26,7 @@ export default function Home() {
 
       {/* Modal */}
       <Modal toggle={toggleModal} setToggle={setToggleModal}>
-        <Modal.Header>👋 I am a header</Modal.Header>
+        <Modal.Header>👋 Hi, I'm a modal</Modal.Header>
         <Modal.Body>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi quos
           mollitia nam nobis, illum eius magnam qui eveniet asperiores quo, vero

@@ -1,5 +1,5 @@
 import { createPortal } from "react-dom";
-import { Fragment } from "react";
+import { Fragment, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 // Compound Component: <Modal/> <Modal.Header/> <Modal.Body/> ...
@@ -28,12 +28,22 @@ const modalVariants = {
 
 // Modal
 const Modal = ({ children, toggle, setToggle, className, ...restProps }) => {
+  const modalCloseBtnRef = useRef();
+
+  useEffect(() => {
+    // Auto focus on modal close button
+    if (modalCloseBtnRef.current) {
+      modalCloseBtnRef.current.focus();
+    }
+  }, [modalCloseBtnRef.current]);
+
   return (
     typeof window !== "undefined" &&
     createPortal(
       <AnimatePresence>
         {toggle && (
           <Fragment>
+            {/* Backdrop */}
             <motion.div
               variants={backdropVariants}
               initial="hidden"
@@ -43,6 +53,7 @@ const Modal = ({ children, toggle, setToggle, className, ...restProps }) => {
               className="fixed left-0 top-0 bottom-0 right-0 bg-backdrop"
             />
 
+            {/* Modal */}
             <motion.div
               variants={modalVariants}
               initial="hidden"
@@ -53,6 +64,7 @@ const Modal = ({ children, toggle, setToggle, className, ...restProps }) => {
             >
               {/* Close button */}
               <button
+                ref={modalCloseBtnRef}
                 onClick={setToggle.bind(this, false)}
                 className="self-end flex px-2 text-red-300 rounded-full border border-red-300 mr-4 mt-4 hover:border-red-500 hover:text-red-500"
               >

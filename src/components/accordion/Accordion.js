@@ -72,13 +72,13 @@ Accordion.Item = ({ children }) => children;
 const Collapsed = ({ children, handleOpen, idx }) => {
   // handleOpen, idx props come from cloned Collapsed component
   return (
-    <div
+    <button
       onClick={handleOpen}
       data-idx={idx}
-      className="px-5 py-3 text-blue-400 bg-gray-100 cursor-pointer"
+      className="block w-full text-left px-5 py-3 text-blue-400 bg-gray-100 cursor-pointer"
     >
       {children}
-    </div>
+    </button>
   );
 };
 

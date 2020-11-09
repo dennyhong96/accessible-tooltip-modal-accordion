@@ -39,7 +39,6 @@ const Tooltip = ({ label, children }) => {
   return (
     <Fragment>
       {/* Tooltip */}
-
       {typeof window !== "undefined" &&
         createPortal(
           <AnimatePresence>
@@ -50,13 +49,14 @@ const Tooltip = ({ label, children }) => {
                 animate="visible"
                 exit="exit"
                 tabIndex={0}
-                className="absolute px-5 py-3 bg-gray-700 text-gray-200 text-sm rounded left-0 top-0"
+                className="absolute px-5 py-3 bg-gray-700 text-gray-200 text-sm rounded left-0 top-0 z-50 shadow-md"
                 style={{
                   left: tooltipPosition.left, // Calculated from parent position
                   top: tooltipPosition.top, // Calculated from parent position
                 }}
               >
                 {label}
+                <div className="w-3 h-3 transform rotate-45 bg-gray-700 absolute left-4 top-0 -mt-1" />
               </motion.div>
             )}
           </AnimatePresence>,

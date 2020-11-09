@@ -30,7 +30,7 @@ const accordion = () => {
   return (
     <Fragment>
       <h1 className="text-3xl font-bold text-center mb-4">
-        This is an accordion
+        👋 Hi, I'm an accordion
       </h1>
 
       {/* Accordion */}
