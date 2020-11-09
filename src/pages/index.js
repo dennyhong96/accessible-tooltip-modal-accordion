@@ -1,4 +1,5 @@
 import { Fragment, useState } from "react";
+import Link from "next/link";
 
 import Modal from "../components/modal/Modal";
 import Tooltip from "../components/tooltip/Tooltip";
@@ -34,6 +35,11 @@ export default function Home() {
           perferendis a minima rerum voluptatibus error molestias nulla.
         </Modal.Body>
       </Modal>
+
+      {/* Link to Accordian page */}
+      <Link href="/accordian">
+        <a className="block mt-4 text-blue-300">To Accordian &rarr;</a>
+      </Link>
     </Fragment>
   );
 }
