@@ -37,7 +37,7 @@ export default function Home() {
       </Modal>
 
       {/* Link to Accordian page */}
-      <Link href="/accordian">
+      <Link href="/accordion">
         <a className="block mt-4 text-blue-300">To Accordian &rarr;</a>
       </Link>
     </Fragment>

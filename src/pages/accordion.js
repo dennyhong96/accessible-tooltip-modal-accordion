@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 
-import Accordian from "../components/accordian/Accordian";
+import Accordion from "../components/accordion/Accordion";
 
 const ACCORDIAN_DATA = [
   {
@@ -26,27 +26,27 @@ const ACCORDIAN_DATA = [
   },
 ];
 
-const _Accordian = () => {
+const accordion = () => {
   return (
     <Fragment>
       <h1 className="text-3xl font-bold text-center mb-4">
-        This is an accordian
+        This is an accordion
       </h1>
 
-      {/* Accordian */}
-      <Accordian>
+      {/* Accordion */}
+      <Accordion>
         {ACCORDIAN_DATA.map(({ summary, detail }, idx) => (
-          <Accordian.Item key={`${idx}-${summary}`}>
+          <Accordion.Item key={idx}>
             {/* Collapsed */}
-            <Accordian.Collapsed>{summary}</Accordian.Collapsed>
+            <Accordion.Collapsed>{summary}</Accordion.Collapsed>
 
             {/* Expanded */}
-            <Accordian.Expended>{detail}</Accordian.Expended>
-          </Accordian.Item>
+            <Accordion.Expanded>{detail}</Accordion.Expanded>
+          </Accordion.Item>
         ))}
-      </Accordian>
+      </Accordion>
     </Fragment>
   );
 };
 
-export default _Accordian;
+export default accordion;

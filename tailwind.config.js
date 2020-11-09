@@ -19,6 +19,9 @@ module.exports = {
       fontFamily: {
         body: ["Nunito"], // will generate class name: font-body
       },
+      spacing: {
+        200: "50rem",
+      },
       inset: {
         px: "1px",
         0: "0",
