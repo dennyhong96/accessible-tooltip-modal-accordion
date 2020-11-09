@@ -13,6 +13,7 @@ class MyDocument extends Document {
         <body>
           <Main />
           <div id="modal-portal" />
+          <div id="tooltip-portal" />
           <NextScript />
         </body>
       </Html>

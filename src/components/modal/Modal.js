@@ -8,7 +8,10 @@ const Modal = ({ children, toggle, setToggle, className, ...restProps }) => {
   return typeof window !== "undefined" && toggle
     ? createPortal(
         <Fragment>
-          <div className="fixed left-0 top-0 bottom-0 right-0 bg-backdrop" />
+          <div
+            onClick={setToggle.bind(this, false)}
+            className="fixed left-0 top-0 bottom-0 right-0 bg-backdrop"
+          />
           <div
             {...restProps}
             className={`fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col rounded-xl bg-blue-100 w-10/12 max-w-md ${className}`}
